@@ -10,9 +10,16 @@ import { SignUp } from './Pages/SignUp'
 
 export const App = () => {
   return (
-
-    <h1 className='text-3xl text-red-500'>
-      Hellow world !
-    </h1>
+    <Router>
+      <Routes>
+        <Route path='/' element={<Home />} />
+        <Route path='/sign-in' element={<SignIn />} />
+        <Route path='/sign-up' element={<SignUp />} />
+        <Route path='/about' element={<About />} />
+        <Route path='/service' element={<Service />} />
+        <Route path='/project' element={<Projects />} />
+        <Route path='/dashboard' element={<DashBoard />} />
+      </Routes>
+    </Router>
   )
 }
