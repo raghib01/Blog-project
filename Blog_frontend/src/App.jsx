@@ -7,10 +7,12 @@ import { Projects } from './Pages/Projects'
 import { DashBoard } from './Pages/DashBoard'
 import { SignIn } from './Pages/SignIn'
 import { SignUp } from './Pages/SignUp'
+import  Navbar  from './Components/Nav'
 
 export const App = () => {
   return (
     <Router>
+      <Navbar/>
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/sign-in' element={<SignIn />} />
