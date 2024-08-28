@@ -1,3 +1,3 @@
 export const test = async (req, res) => {
-  res.json({ message: "Test successful" });
+  res.json({ message: "testing successfully ok" });
 };
