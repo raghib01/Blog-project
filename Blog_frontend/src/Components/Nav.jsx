@@ -14,7 +14,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-[#f0d6af] py-4">
+    <nav className="bg-gradient-to-l from-pink-200 to-cyan-200 py-4">
       <div className="container mx-auto flex justify-between items-center">
         {/* Logo */}
         <Link to="/">
@@ -23,7 +23,7 @@ const Navbar = () => {
 
         {/* Hamburger Icon for Mobile */}
         <button
-          className=" text-2xl md:hidden"
+          className=" text-2xl md:hidden "
           onClick={toggleNav}
         >
           {navOpen ? <FaTimes /> : <FaBars />}
@@ -77,7 +77,7 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       {navOpen && (
-        <div className="md:hidden mt-4 space-y-2  font-semibold ">
+        <div className="md:hidden mt-4 space-y-2 font-semibold">
           <NavLink
             to="/"
             className="  flex items-center justify-center px-4 py-2 hover:bg-primary text-dark hover:text-white"
