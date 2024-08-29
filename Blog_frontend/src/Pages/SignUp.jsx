@@ -1,17 +1,24 @@
 import React, { useState } from 'react'
 import Logo from '../assets/Logo.png'
 import {Link} from 'react-router-dom'
-import {Label, TextInput} from 'flowbite-react'
+import { Label, TextInput } from 'flowbite-react'
 
 export const SignUp = () => {
   const [formData, setFormData] = useState({});
+  //handing error for clients
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
   }
   
   const handleSubmit = async (e) => {
     e.preventDefault();
+    // if(!formData.username || !formData.email || !formData.password)
+    // {
+    //   return setErrorMessage('Please Fill out all fields');
+    // }
     try {
+      // setErrorMessage(null);
       const res = await fetch('/api/auth/signup', {
         method: 'POST',
         headers: {
@@ -20,8 +27,10 @@ export const SignUp = () => {
         body: JSON.stringify(formData),
       })
       const data = await res.json();
+      console.log(data)
+
     } catch (error) {
-      
+      // setErrorMessage('Error signing up. Please try again later');   
     }
   }
   return (
@@ -40,8 +49,8 @@ export const SignUp = () => {
             />
             <TextInput
               type='text'
-              placeholder='Username'
-              id='Username'
+              placeholder='Input Username'
+              id='username'
               onChange={handleChange}
               />
           </div>
@@ -52,7 +61,7 @@ export const SignUp = () => {
             />
             <TextInput
               type='text'
-              placeholder='email'
+              placeholder='abc@gmail.com'
               id='email'
               onChange={handleChange}
               />
@@ -64,7 +73,7 @@ export const SignUp = () => {
             />
             <TextInput
               type='password'
-              placeholder='password'
+              placeholder='Enter password'
               id='password'
               onChange={handleChange}
               />
@@ -73,6 +82,7 @@ export const SignUp = () => {
             Sign Up
           </button>
         </form>
+
         <div className='pt-4 flex gap-2 text-sm mt-1'>
           <span>Have an Account ? </span>
           <Link to='/sign-in' className='text-blue-600 hover:text-red-900'>
