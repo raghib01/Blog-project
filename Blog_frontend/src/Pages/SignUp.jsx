@@ -1,23 +1,31 @@
 import React, { useState } from 'react'
 import Logo from '../assets/Logo.png'
-import {Link} from 'react-router-dom'
-import { Label, TextInput } from 'flowbite-react'
+import {Link, useNavigate} from 'react-router-dom'
+import { Label, Spinner, TextInput } from 'flowbite-react'
 
 export const SignUp = () => {
   const [formData, setFormData] = useState({});
-  //handing error for clients
+  //set error for clientside function
+  const [errorMessage, setErrorMessage] = useState(null);
+  //set loding function
+  const [loading, setLoading] = useState(false);
+  //sign in navigation
+  const navigate = useNavigate();
+
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.id]: e.target.value });
+    //trim for space before
+    setFormData({ ...formData, [e.target.id]: e.target.value.trim() });
   }
   
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // if(!formData.username || !formData.email || !formData.password)
-    // {
-    //   return setErrorMessage('Please Fill out all fields');
-    // }
+    if (!formData.username || !formData.email || !formData.password) {
+      return setErrorMessage('Please Fill all fields');
+    }
     try {
+      setLoading(true);
+      setErrorMessage(null);
       // setErrorMessage(null);
       const res = await fetch('/api/auth/signup', {
         method: 'POST',
@@ -27,12 +35,21 @@ export const SignUp = () => {
         body: JSON.stringify(formData),
       })
       const data = await res.json();
-      console.log(data)
-
+      //set error for same name or duplicacy
+      if (data.success === false) {
+        return setErrorMessage(data.message)
+      }
+      setLoading(false);
+      //if all are ok so go to sign in page
+      if (res.ok) {
+        navigate('/sign-in', { replace: true });
+      };
     } catch (error) {
-      // setErrorMessage('Error signing up. Please try again later');   
+      //set clinet side error for user
+      setErrorMessage(error.message);
+      setLoading(false);
     }
-  }
+  };
   return (
     <div className='min-h-screen bg-gradient-to-l from-pink-200 to-cyan-200 flex items-center justify-center'>
       <div className='max-w-lg px-8 py-8  bg-white shadow-xl'>
@@ -78,8 +95,15 @@ export const SignUp = () => {
               onChange={handleChange}
               />
           </div>
-          <button className='btn-primary w-full '> 
-            Sign Up
+          <button className='btn-primary w-full ' disabled={loading}> 
+            {/* create a spinner under button */}
+            {
+              loading ? (
+                <>
+                  <Spinner size='sm' className='text-white'/> <span className='text-white pl-3'>Loading..</span>
+                </>
+              ) : 'Sign Up'
+            }
           </button>
         </form>
 
@@ -89,6 +113,15 @@ export const SignUp = () => {
             <u> Sign in</u>
           </Link> 
         </div>
+        
+        {/* set alert for user */}
+        {
+          errorMessage && (
+            <div className='text-red-800 text-center m-3'>
+              {errorMessage}
+            </div>  // end of errorMessage div  
+          )  // end of errorMessage conditional rendering
+        }
        </div>
       </div>
 
