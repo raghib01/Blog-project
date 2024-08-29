@@ -43,7 +43,7 @@ export const SignUp = () => {
       //if all are ok so go to sign in page
       if (res.ok) {
         navigate('/sign-in', { replace: true });
-      };
+      }
     } catch (error) {
       //set clinet side error for user
       setErrorMessage(error.message);
@@ -100,7 +100,8 @@ export const SignUp = () => {
             {
               loading ? (
                 <>
-                  <Spinner size='sm' className='text-white'/> <span className='text-white pl-3'>Loading..</span>
+                  <Spinner size='sm' className='text-white' /> <span className='text-white pl-3'>Loading..
+                  </span>
                 </>
               ) : 'Sign Up'
             }

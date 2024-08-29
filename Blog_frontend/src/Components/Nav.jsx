@@ -14,7 +14,8 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-gradient-to-l from-pink-200 to-cyan-200 py-4">
+    // sticky navbar for last items
+    <nav className="py-4 border-b-[1px] border-b-slate-400 bg-white sticky top-0 z-50">
       <div className="container mx-auto flex justify-between items-center">
         {/* Logo */}
         <Link to="/">
