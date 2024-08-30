@@ -72,7 +72,7 @@ const Navbar = () => {
             <GoProject className="mr-2" />
             Project
             </NavLink>
-        <Link to='/sign-up'>   <button className='btn-primary'>Sign Up</button>    </Link> 
+        <Link to='/sign-in'><button className='btn-primary md:text-sm'>Sign In</button>    </Link> 
         </div>
       </div>
 
@@ -111,8 +111,8 @@ const Navbar = () => {
             <GoProject className="mr-2" />
             Project
             </NavLink>
-                  <Link to='/sign-up' className='flex justify-center items-center py-2'
-                      onClick={() => setNavOpen(false)}>   <button className='btn-primary w-full'>Sign Up</button></Link> 
+                  <Link to='/sign-in' className='flex justify-center items-center py-2'
+                      onClick={() => setNavOpen(false)}>   <button className='btn-primary w-full'>Sign In</button></Link> 
         </div>
       )}
     </nav>
