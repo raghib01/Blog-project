@@ -52,7 +52,7 @@ export const SignUp = () => {
   };
   return (
     <div className='min-h-screen bg-gradient-to-l from-pink-200 to-cyan-200 flex items-center justify-center'>
-      <div className='max-w-lg px-8 py-8  bg-white shadow-xl'>
+      <div className='max-w-lg px-8 py-8  bg-white shadow-2xl'>
         <div className='flex items-center justify-center'>
           <img src={Logo} alt="RG's" className='w-[50%]' />
         </div>
